@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.text.TextUtils
 import android.view.WindowManager
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import com.example.projectmanage.R
 import com.example.projectmanage.databinding.ActivitySignupBinding
+import com.example.projectmanage.firebase.FireStoreClass
+import com.example.projectmanage.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
-class SignupActivity : AppCompatActivity() {
+class SignupActivity : BaseActivity() {
     private lateinit var binding: ActivitySignupBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivitySignupBinding.inflate(layoutInflater)
@@ -22,7 +23,13 @@ class SignupActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
         setupActionBar()
+    }
 
+    fun userRegisteredSuccess() {
+        Toast.makeText(this, "You have successfully registered", Toast.LENGTH_LONG).show()
+        hideProgressDialog()
+        FirebaseAuth.getInstance().signOut()
+        finish()
     }
 
     private fun setupActionBar() {
@@ -51,41 +58,32 @@ class SignupActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         val firebaseUser: FirebaseUser = task.result!!.user!!
                         val registeredEmail = firebaseUser.email!!
-                        Toast.makeText(
-                            this,
-                            "You have successfully registered with email id $registeredEmail",
-                            Toast.LENGTH_LONG
-                        ).show()
-                        FirebaseAuth.getInstance().signOut()
-                        finish()
+                        val user = User(firebaseUser.uid, name, registeredEmail)
+                        FireStoreClass().registerUser(this, user)
+
                     } else {
                         Toast.makeText(this, task.exception!!.message, Toast.LENGTH_LONG).show()
                     }
                 }
-
     }
 
     private fun validateForm(name: String, email: String, password: String): Boolean {
         return when {
             TextUtils.isEmpty(name) -> {
-                //showErrorSnackBar("Enter a name")
+                showErrorSnackBar("Enter a name")
                 false
             }
-
             TextUtils.isEmpty(email) -> {
-                // showErrorSnackBar("Enter a email")
+                showErrorSnackBar("Enter a email")
                 false
             }
-
             TextUtils.isEmpty(password) -> {
-                // showErrorSnackBar("Enter a password")
+                showErrorSnackBar("Enter a password")
                 false
             }
-
             else -> {
                 true
             }
-
         }
     }
 }

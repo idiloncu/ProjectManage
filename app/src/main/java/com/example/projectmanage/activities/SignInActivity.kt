@@ -7,6 +7,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import com.example.projectmanage.R
 import com.example.projectmanage.databinding.ActivitySignInBinding
+import com.example.projectmanage.models.User
 import com.google.firebase.auth.FirebaseAuth
 
 class SignInActivity : BaseActivity() {
@@ -26,8 +27,13 @@ class SignInActivity : BaseActivity() {
         binding.btnSignIn.setOnClickListener {
             signInRegisteredUser()
         }
-
     }
+     fun signInSuccess(user: User) {
+         hideProgressDialog()
+         startActivity(Intent(this, MainActivity::class.java))
+         finish()
+
+     }
 
     private fun setupActionBar() {
         setSupportActionBar(binding.toolbarSignInActivity)
