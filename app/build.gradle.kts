@@ -39,11 +39,14 @@ android {
 }
 
 dependencies {
-    implementation("com.google.firebase:firebase-auth:19.2.0")
-    implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
-    implementation("com.google.firebase:firebase-analytics")
-    implementation("com.google.firebase:firebase-auth:19.2.0")
-    implementation("com.google.firebase:firebase-firestore:21.4.0")
+    implementation(libs.firebase.storage)
+    implementation(libs.glide)
+    annotationProcessor (libs.compiler)
+    implementation(libs.firebase.auth)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
