@@ -1,7 +1,11 @@
 package com.example.projectmanage.activities
 
+import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.SyncStateContract.Constants
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.core.view.GravityCompat
@@ -17,7 +21,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private lateinit var binding: ActivityMainBinding
     var drawer_layout = findViewById<androidx.drawerlayout.widget.DrawerLayout>(R.id.drawer_layout)
     var nav_user_image = findViewById<NavigationView>(R.id.nav_user_image)
-    var tv_username = findViewById<R.drawable.nav_header_main>(R.id.tv_username)
+    var tv_username = findViewById<R.id>(R.id.tv_username)
+
+    companion object{
+        const val MY_PROFILE_REQUEST_CODE : Int = 11
+    }
+    private lateinit var mUserName: String
+    private var mSelectedImageFileUri: Uri? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,11 +36,22 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         setupActionBar()
         nav_user_image.setNavigationItemSelectedListener(this)
         FireStoreClass().loadUserData(this)
+        binding.fabCreateBoard.setOnClickListener {
+            startActivity(Intent(this, CreateBoardActivity::class.java))
+        }
+        if (intent.hasExtra(com.example.projectmanage.utils.Constants.NAME)){
+            mUserName = intent.getStringExtra(com.example.projectmanage.utils.Constants.NAME)!!
+        }
     }
 
     private fun setupActionBar() {
         val toolbar = findViewById<androidx.appcompat.widget.Toolbar>(R.id.toolbar_main_activity)
         setSupportActionBar(toolbar)
+        val actionBar = supportActionBar
+        if (actionBar != null) {
+            actionBar.title = "Action Bar"
+            actionBar.setDisplayHomeAsUpEnabled(true)
+        }
         toolbar.setNavigationIcon(R.drawable.baseline_menu_24)
         toolbar.setNavigationOnClickListener {
             toggleDrawer()
@@ -54,20 +75,29 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         }
     }
     fun updateNavigationUserDetails (user: User){
+        mUserName = user.name
         Glide
             .with(this@MainActivity)
             .load(user.image)
             .centerCrop()
             .placeholder(R.drawable.ic_user_place_holder)
             .into(nav_user_image)
-        tv_username.text = user.name
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == MY_PROFILE_REQUEST_CODE){
+            FireStoreClass().loadUserData(this)
+        }else{
+            Log.e("Cancelled","Cancelled")
+        }
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_my_profile -> {
-                val intent = Intent(this, MyProfileActivity::class.java)
-                startActivity(intent)
+                startActivityForResult(Intent(this, MyProfileActivity::class.java),MY_PROFILE_REQUEST_CODE)
+
             }
 
             R.id.nav_sign_out -> {

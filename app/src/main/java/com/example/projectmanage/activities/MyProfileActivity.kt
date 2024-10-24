@@ -3,13 +3,12 @@ package com.example.projectmanage.activities
 import android.net.Uri
 import android.os.Bundle
 import android.webkit.MimeTypeMap
-import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.projectmanage.R
 import com.example.projectmanage.firebase.FireStoreClass
 import com.example.projectmanage.models.User
 
-class MyProfileActivity : BaseActivity() {
+open class MyProfileActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_profile)

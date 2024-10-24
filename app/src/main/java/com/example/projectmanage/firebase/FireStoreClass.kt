@@ -2,10 +2,11 @@ package com.example.projectmanage.firebase
 
 import android.app.Activity
 import android.util.Log
+import com.example.projectmanage.activities.CreateBoardActivity
 import com.example.projectmanage.activities.MainActivity
-import com.example.projectmanage.activities.MyProfileActivity
 import com.example.projectmanage.activities.SignInActivity
 import com.example.projectmanage.activities.SignupActivity
+import com.example.projectmanage.models.Board
 import com.example.projectmanage.models.User
 import com.example.projectmanage.utils.Constants
 import com.google.firebase.auth.FirebaseAuth
@@ -20,6 +21,13 @@ class FireStoreClass {
             .addOnSuccessListener {
                 activity.userRegisteredSuccess()
             }
+
+    }
+    fun createBoard(activity: CreateBoardActivity,board: Board) {
+        mFireStore.collection(Constants.BOARDS)
+            .document()
+            .set(board, SetOptions.merge())
+            activity.boardCreatedSuccessfully()
     }
 
     fun signInUser(activity: Activity) {
