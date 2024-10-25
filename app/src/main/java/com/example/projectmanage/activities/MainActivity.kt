@@ -12,6 +12,7 @@ import androidx.core.view.GravityCompat
 import com.bumptech.glide.Glide
 import com.example.projectmanage.R
 import com.example.projectmanage.databinding.ActivityMainBinding
+import com.example.projectmanage.firebase.FireStoreClass
 import com.example.projectmanage.models.User
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -20,7 +21,6 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private lateinit var binding: ActivityMainBinding
     var drawer_layout = findViewById<androidx.drawerlayout.widget.DrawerLayout>(R.id.drawer_layout)
     var nav_user_image = findViewById<NavigationView>(R.id.nav_user_image)
-    var tv_username = findViewById<R.id>(R.id.tv_username)
 
     companion object{
         const val MY_PROFILE_REQUEST_CODE : Int = 11

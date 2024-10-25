@@ -8,6 +8,8 @@ import android.view.MenuItem
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.projectmanage.R
+import com.example.projectmanage.adapter.MemberListItemsAdapter
+import com.example.projectmanage.firebase.FireStoreClass
 import com.example.projectmanage.models.Board
 import com.example.projectmanage.models.User
 import com.example.projectmanage.utils.Constants
@@ -29,7 +31,7 @@ class MembersActivity : BaseActivity() {
         setupActionBar()
 
         showProgressDialog(resources.getString(R.string.please_wait))
-        FirestoreClass().getAssignedMembersListDetails(
+        FireStoreClass().getAssignedMembersListDetails(
             this@MembersActivity,
             mBoardDetails.assignedTo
         )
@@ -112,7 +114,7 @@ class MembersActivity : BaseActivity() {
     fun memberDetails(user: User) {
 
         mBoardDetails.assignedTo.add(user.id)
-        FirestoreClass().assignMemberToBoard(this@MembersActivity, mBoardDetails, user)
+        FireStoreClass().assignMemberToBoard(this@MembersActivity, mBoardDetails, user)
     }
 
     fun memberAssignSuccess(user: User) {

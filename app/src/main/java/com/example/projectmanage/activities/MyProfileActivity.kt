@@ -51,6 +51,4 @@ open class MyProfileActivity : BaseActivity() {
         setResult(Activity.RESULT_OK)
         finish()
     }
-
-
 }

@@ -57,11 +57,8 @@ class TaskListActivity : BaseActivity() {
 
                 val intent = Intent(this@TaskListActivity, MembersActivity::class.java)
                 intent.putExtra(Constants.BOARD_DETAIL, mBoardDetails)
-                // TODO (Step 2: Start activity for result.)
-                // START
                 startActivityForResult(intent, MEMBERS_REQUEST_CODE)
                 return true
-                // END
             }
         }
         return super.onOptionsItemSelected(item)

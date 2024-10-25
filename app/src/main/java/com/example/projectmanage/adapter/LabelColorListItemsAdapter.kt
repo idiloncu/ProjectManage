@@ -4,7 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.ui.graphics.Color
 import androidx.recyclerview.widget.RecyclerView
 import com.example.projectmanage.R
 
@@ -31,7 +30,6 @@ class LabelColorListItemsAdapter(
             } else {
                 holder.itemView.iv_selected_color.visibility = View.GONE
             }
-            holder.itemView.view_main.setBackgroundColor(Color.parseColor(item))
             holder.itemView.setOnClickListener {
                 if (onItemClickListener != null) {
                     onItemClickListener!!.onClick(position, item)
