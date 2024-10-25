@@ -6,7 +6,6 @@ import android.os.Handler
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.projectmanage.R
-import com.example.projectmanage.firebase.FireStoreClass
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

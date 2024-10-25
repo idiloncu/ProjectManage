@@ -1,5 +1,6 @@
 package com.example.projectmanage.activities
 
+import android.app.Activity
 import android.net.Uri
 import android.os.Bundle
 import android.webkit.MimeTypeMap
@@ -43,5 +44,13 @@ open class MyProfileActivity : BaseActivity() {
     private fun getFileExtension(uri: Uri?):String?{
         return MimeTypeMap.getSingleton().getExtensionFromMimeType(contentResolver.getType(uri!!))
     }
+    fun profileUpdateSuccess() {
+
+        hideProgressDialog()
+
+        setResult(Activity.RESULT_OK)
+        finish()
+    }
+
 
 }

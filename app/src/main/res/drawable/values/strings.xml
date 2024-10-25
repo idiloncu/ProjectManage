@@ -43,21 +43,12 @@
     <string name="add">ADD</string>
     <string name="search_member">Search Member</string>
 
+    <!--TODO (Step 5: All the string values are added here.)-->
+    <!--START-->
     <string name="label_color">Label Color</string>
     <string name="select_color">Select Color</string>
     <string name="select_members">Select Members</string>
-
     <string name="due_date">Due Date</string>
     <string name="select_due_date">Select Due Date</string>
-    <string name="delete_card">Delete Card</string>
-
-    <string name="alert">Alert</string>
-    <string name="confirmation_message_to_delete_card">Are you sure you want to delete card \'%1$s\'?</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-
-    <!--TODO (Step 8: All the string values are added here.)-->
-    <!--START-->
-    <string name="str_select_label_color">Select Label Color</string>
     <!--END-->
 </resources>

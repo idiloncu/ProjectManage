@@ -6,7 +6,6 @@ import android.view.WindowManager
 import android.widget.Toast
 import com.example.projectmanage.R
 import com.example.projectmanage.databinding.ActivitySignupBinding
-import com.example.projectmanage.firebase.FireStoreClass
 import com.example.projectmanage.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser

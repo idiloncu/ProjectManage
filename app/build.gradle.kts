@@ -41,6 +41,7 @@ android {
 dependencies {
     implementation(libs.firebase.storage)
     implementation(libs.glide)
+    implementation(libs.androidx.material3.android)
     annotationProcessor (libs.compiler)
     implementation(libs.firebase.auth)
     implementation(platform(libs.firebase.bom))

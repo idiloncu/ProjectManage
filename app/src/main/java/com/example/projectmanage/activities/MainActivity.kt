@@ -12,7 +12,6 @@ import androidx.core.view.GravityCompat
 import com.bumptech.glide.Glide
 import com.example.projectmanage.R
 import com.example.projectmanage.databinding.ActivityMainBinding
-import com.example.projectmanage.firebase.FireStoreClass
 import com.example.projectmanage.models.User
 import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth

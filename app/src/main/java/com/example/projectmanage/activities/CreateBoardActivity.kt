@@ -3,7 +3,6 @@ package com.example.projectmanage.activities
 import android.net.Uri
 import android.os.Bundle
 import com.example.projectmanage.R
-import com.example.projectmanage.firebase.FireStoreClass
 import com.example.projectmanage.models.Board
 
 class CreateBoardActivity : BaseActivity() {
